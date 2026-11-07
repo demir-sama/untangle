@@ -35,11 +35,11 @@ The app retains framework Better Auth. Use normal account signup/login on the ho
 
 After app login, the native assistant's **Use Builder.io** setup control opens its shared chooser. Select **I have a Builder.io account** for an existing account. Do not invent a direct connect URL or choose **Create and activate** without a separate account decision. These labels/flow are confirmed in the installed Agent-Native framework/toolkit source.
 
-Builder's published Free plan is 60 credits/month with 15/day maximum: https://www.builder.io/pricing . Actual account eligibility, remaining balance, available models and hosted inference reliability are unverified. No paid fallback, top-up, account signup or provider key is assumed. Prompts/source context may reach the selected provider once configured; review its terms. Production never calls the development Ollama service.
+Builder's published Free plan is 60 credits/month with 15/day maximum: https://www.builder.io/pricing . The parent completed normal existing-account connection and observed real comparison plus contextual follow-up on that Free plan during desktop QA. This does not promise another account’s entitlement, current balance, model identity or ongoing hosted inference reliability. No paid fallback, top-up, account signup or provider key is assumed. Prompts/source context may reach the selected provider once configured; review its terms. Production never calls the development Ollama service.
 
 ## Remaining verification
 
-- Parent desktop/mobile authenticated browser QA and native multi-turn chat after a verified free provider connection.
+- Parent-reported authenticated desktop comparison, reload persistence, clarification/stale exports, downloads and native follow-up passed. Mobile viewport could not be established after bounded attempts and remains unverified; screen-reader/contrast audit also unverified.
 - Comparative retained/fresh model cases before claiming a stronger model.
 - Cross-instance realtime behavior: server health reports local realtime transport, not a verified managed realtime service.
 - Retention/recovery controls and operator administration are not a production guarantee.
