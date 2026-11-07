@@ -1,5 +1,4 @@
 import { navigateWithAgentChatViewTransition } from "@agent-native/core/client/agent-chat";
-import { useT } from "@agent-native/core/client/i18n";
 import { focusAgentChat } from "@agent-native/toolkit/app/chat";
 import { AgentSidebar } from "@agent-native/toolkit/app/chat";
 import { type ReactNode } from "react";
@@ -22,7 +21,6 @@ export function AgentInspector({
   chatHomeHandoffPending,
 }: AgentInspectorProps) {
   const navigate = useNavigate();
-  const t = useT();
 
   function openAskAgentFullscreen(threadId?: string) {
     focusAgentChat();
@@ -39,12 +37,12 @@ export function AgentInspector({
       browserTabId={TAB_ID}
       openOnChatRunning={chatHomeHandoffActive}
       onFullscreenRequest={openAskAgentFullscreen}
-      emptyStateText={t("chat.inspectEmptyState")}
+      emptyStateText="Compare the current project. Keep every interpretation provisional."
       agentPageHref="/settings/agent"
       suggestions={[
-        t("chat.inspectSuggestionCapabilities"),
-        t("chat.inspectSuggestionHello"),
-        t("chat.inspectSuggestionAction"),
+        "Inspect this project and propose atomic findings with exact source quotes. Do not approve anything.",
+        "What questions remain unresolved in the current project?",
+        "Which saved exports are stale, and why?",
       ]}
     >
       {children}

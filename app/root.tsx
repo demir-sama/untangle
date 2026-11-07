@@ -60,7 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, interactive-widget=resizes-content"
+          content="width=device-width, initial-scale=1, interactive-widget=resizes-content"
         />
         <script
           suppressHydrationWarning
@@ -71,7 +71,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: LOCALE_INIT_SCRIPT }}
         />
-        <meta name="theme-color" content="#18181B" />
+        <meta name="theme-color" content="#173e35" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"
@@ -84,6 +84,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <a className="untangle-skip-link" href="#main-content">
+          Skip to workspace
+        </a>
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -180,15 +183,26 @@ export default function Root() {
   // The path, not the visitor, picks the shell, so the SSR shell stays one
   // cached page per URL.
   const { pathname } = useLocation();
+  const isPublicInfo = ["/about", "/privacy", "/guide"].includes(pathname);
   return (
     <AppToolkitProvider>
       <AppProviders
         queryClient={queryClient}
+        isPublicPath={isPublicInfo}
+        disableWebMcp={isPublicInfo}
         skeletonLayout={skeletonLayoutForPath(pathname)}
         i18n={{ catalog: i18nCatalog }}
       >
-        <DbSyncSetup />
-        <AppContent />
+        {isPublicInfo ? (
+          <main id="main-content" tabIndex={-1} className="min-h-screen">
+            <Outlet />
+          </main>
+        ) : (
+          <>
+            <DbSyncSetup />
+            <AppContent />
+          </>
+        )}
       </AppProviders>
     </AppToolkitProvider>
   );

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "fresh-exclusion",
+    "baseline": "Provide email support. Telephone support is excluded.",
+    "request": "Include telephone support.",
+    "expected": "conflict"
+  },
+  {
+    "id": "fresh-extra",
+    "baseline": "Deliver a weekly attendance report.",
+    "request": "Also prepare an onboarding checklist.",
+    "expected": "scope_change"
+  },
+  {
+    "id": "fresh-subjective",
+    "baseline": "Use the supplied company logo.",
+    "request": "Make the brand feel more alive.",
+    "expected": "question"
+  },
+  {
+    "id": "fresh-clarification",
+    "baseline": "Deliver a searchable archive.",
+    "request": "Which years should the archive cover?",
+    "expected": "question"
+  },
+  {
+    "id": "fresh-permission",
+    "baseline": "Anyone can access the content without signing in.",
+    "request": "Keep sign-in optional for accessing the content.",
+    "expected": "consistent"
+  },
+  {
+    "id": "fresh-privacy",
+    "baseline": "Do not publish customer names.",
+    "request": "Show customer names in the public report.",
+    "expected": "conflict"
+  },
+  {
+    "id": "fresh-deadline",
+    "baseline": "Final delivery is Friday.",
+    "request": "Keep final delivery on Friday.",
+    "expected": "consistent"
+  },
+  {
+    "id": "fresh-budget",
+    "baseline": "The budget is capped at $500.",
+    "request": "Increase the budget to $900.",
+    "expected": "conflict"
+  }
+]

@@ -1,0 +1,20 @@
+# Core checkpoint verification
+
+Story: a private reviewer opens Projects → shared typed action endpoints → immutable SQL source/revision state → evidence-backed proposals → human decision → revision-bound brief/acknowledgment export; reopening or adding a source invalidates previous export currency.
+
+| Boundary                          | Evidence/status                                                                                                                                                                                                                      |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Browser rendering and interaction | BLOCKED by intentional bot-browser loopback/private-network security restriction; see PREVIEW-ACCESS.md.                                                                                                                             |
+| Route response                    | `/` and `/projects` returned HTTP 200. This does not prove rendering.                                                                                                                                                                |
+| Client/action contracts           | Agent-Native generated action types; latest typecheck passed. UI uses useActionQuery/useActionMutation.                                                                                                                              |
+| Action/SQL                        | 31 tests passed, including actual PGlite-backed/domain and static presentation contracts, including transactions, owner/org isolation, stale writes/exports and evidence/approval guards.                                            |
+| Model/action/SQL                  | Isolated supported resolveEngine → Ollama generated tool call → actual propose-findings → SQL revision 3 passed in 15.81s; no human decision invented.                                                                               |
+| Full native browser chat          | BLOCKED at actual browser/normal session boundary; cookie-less shared-action HTTP requests return Unauthorized. App selects local Ollama via supported framework configuration; full context/multi-turn behavior remains unverified. |
+| Framework safeguards              | agent-native doctor: Clean — no findings.                                                                                                                                                                                            |
+| Production build                  | Node preset build passed; see FEASIBILITY.md for latest run scope.                                                                                                                                                                   |
+
+First broken end-to-end boundary is browser reachability, now confirmed an intentional platform restriction. No alternative private address/tunnel/security bypass is attempted. Normal development sign-in uses Continue as local dev; no session was created, forged or borrowed. Do not claim the complete story works yet.
+
+Parent QA sequence (synthetic text only): create project with baseline "Launch in English only." → append "Add French for launch." → manually add finding using exact quotes from both sources → reject an invented quote → human accept with owner/rationale/explicit direction → export both Markdown drafts → reopen decision with rationale → verify old export marked stale and fresh export marks unresolved/incomplete. Try native chat to propose an additional evidence-backed finding; confirm no silent approval or sending. Check reload persistence, narrow viewport and keyboard navigation. No existing user project should be used for testing.
+
+Known unrelated optional feature limitation: native terminal PTY fails to load pty.node because make/apt prerequisites were unavailable; no bypass was attempted. Domain agent code execution is disabled.

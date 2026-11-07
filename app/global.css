@@ -6,33 +6,33 @@
 @source "./**/*.{ts,tsx}";
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 10%;
+  --background: 45 24% 97%;
+  --foreground: 158 24% 15%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
+  --card-foreground: 158 24% 15%;
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 10%;
-  --primary: 0 0% 15%;
-  --primary-foreground: 0 0% 100%;
+  --primary: 157 46% 20%;
+  --primary-foreground: 45 24% 97%;
   --secondary: 0 0% 95%;
   --secondary-foreground: 0 0% 15%;
-  --muted: 0 0% 95%;
-  --muted-foreground: 0 0% 43%;
+  --muted: 150 13% 93%;
+  --muted-foreground: 157 9% 40%;
   --accent: 0 0% 95%;
   --accent-foreground: 0 0% 15%;
   --destructive: 0 91% 71%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 0 0% 40%;
-  --radius: 0.5rem;
-  --sidebar-background: 0 0% 97%;
-  --sidebar-foreground: 0 0% 43%;
+  --border: 150 10% 85%;
+  --input: 150 10% 79%;
+  --ring: 157 46% 25%;
+  --radius: 0.65rem;
+  --sidebar-background: 150 15% 94%;
+  --sidebar-foreground: 157 14% 35%;
   --sidebar-primary: 0 0% 15%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 0% 95%;
+  --sidebar-accent: 150 15% 89%;
   --sidebar-accent-foreground: 0 0% 15%;
-  --sidebar-border: 0 0% 90%;
+  --sidebar-border: 150 10% 85%;
   --sidebar-ring: 0 0% 40%;
   --chat-sidebar-width: 17.5rem;
   --chat-sidebar-content-inset: 0.5rem;
@@ -229,27 +229,27 @@
 }
 
 .dark {
-  --background: 0 0% 13%;
-  --foreground: 0 0% 90%;
-  --card: 0 0% 16.47%;
+  --background: 157 17% 9%;
+  --foreground: 45 18% 90%;
+  --card: 157 15% 12%;
   --card-foreground: 0 0% 90%;
   --popover: 0 0% 15%;
   --popover-foreground: 0 0% 90%;
-  --primary: 0 0% 75%;
-  --primary-foreground: 0 0% 10%;
+  --primary: 145 35% 76%;
+  --primary-foreground: 157 25% 12%;
   --secondary: 0 0% 18%;
   --secondary-foreground: 0 0% 90%;
-  --muted: 0 0% 16%;
-  --muted-foreground: 0 0% 60%;
+  --muted: 157 13% 15%;
+  --muted-foreground: 150 10% 65%;
   --accent: 0 0% 18%;
   --accent-foreground: 0 0% 90%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 24%;
-  --input: 0 0% 24%;
-  --ring: 0 0% 60%;
+  --border: 157 12% 24%;
+  --input: 157 12% 32%;
+  --ring: 145 35% 76%;
   --radius: 0.5rem;
-  --sidebar-background: 0 0% 10%;
+  --sidebar-background: 157 19% 7%;
   --sidebar-foreground: 0 0% 60%;
   --sidebar-primary: 0 0% 75%;
   --sidebar-primary-foreground: 0 0% 10%;
@@ -280,4 +280,181 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.34);
+}
+
+/* Untangle's quiet, evidence-first workspace. No added motion dependency. */
+.untangle-page {
+  container: untangle / inline-size;
+  overflow-wrap: anywhere;
+}
+.untangle-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: hsl(var(--foreground));
+  text-decoration: none;
+}
+.untangle-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+.untangle-display {
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-weight: 550;
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+.untangle-panel {
+  border: 1px solid hsl(var(--border));
+  border-radius: 1rem;
+  background: hsl(var(--card));
+  box-shadow: 0 2px 4px hsl(var(--foreground) / 0.02);
+}
+.untangle-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid hsl(var(--border));
+  padding: 1rem 0 0.5rem;
+  font-size: 0.72rem;
+  color: hsl(var(--muted-foreground));
+}
+.untangle-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+.untangle-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.untangle-prose {
+  font-size: 0.94rem;
+  line-height: 1.85;
+}
+.untangle-prose section + section {
+  margin-top: 2.5rem;
+}
+.untangle-prose h2 {
+  color: hsl(var(--foreground));
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.75rem;
+}
+.untangle-prose p {
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.8rem;
+}
+.untangle-prose ul,
+.untangle-prose ol {
+  margin: 1rem 0;
+  padding-left: 1.35rem;
+  color: hsl(var(--muted-foreground));
+}
+.untangle-prose ul {
+  list-style: disc;
+}
+.untangle-prose ol {
+  list-style: decimal;
+}
+.untangle-prose li + li {
+  margin-top: 0.7rem;
+}
+.untangle-prose a {
+  color: hsl(var(--foreground));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.untangle-prose strong {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+.untangle-prose code {
+  font-size: 0.85em;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.3rem;
+  background: hsl(var(--muted));
+}
+.untangle-notice {
+  border: 1px solid hsl(var(--border));
+  border-left: 3px solid hsl(var(--primary));
+  border-radius: 0.75rem;
+  background: hsl(var(--muted) / 0.5);
+  padding: 1.5rem;
+}
+.untangle-skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1000;
+  transform: translateY(-200%);
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  color: hsl(var(--primary-foreground));
+  background: hsl(var(--primary));
+}
+.untangle-skip-link:focus {
+  transform: translateY(0);
+}
+.untangle-page
+  :where(a, button, summary, input, textarea, select):focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 3px;
+}
+.untangle-page :where(button, summary, select) {
+  min-height: 2.75rem;
+}
+.untangle-page summary {
+  align-content: center;
+}
+.untangle-page textarea {
+  line-height: 1.65;
+  resize: vertical;
+}
+.decision-layout {
+  display: grid;
+  gap: 1.5rem;
+}
+.evidence-pair {
+  display: grid;
+  gap: 0.75rem;
+}
+@container untangle (min-width: 54rem) {
+  .decision-layout {
+    grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.6fr);
+    align-items: start;
+  }
+  .source-column {
+    position: sticky;
+    top: 1rem;
+  }
+}
+@container untangle (min-width: 38rem) {
+  .evidence-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (forced-colors: active) {
+  .untangle-panel,
+  .untangle-notice {
+    border: 1px solid CanvasText;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .untangle-page {
+    scroll-behavior: auto;
+  }
 }

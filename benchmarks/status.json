@@ -1,0 +1,43 @@
+{
+  "status": "real_local_inference_provisional_only_quality_not_validated_full_browser_chat_blocked",
+  "model": "untangle-qwen",
+  "initial": {
+    "classificationCorrect": 3,
+    "exactQuotes": 6,
+    "total": 6,
+    "medianSeconds": 2.785
+  },
+  "revised": {
+    "classificationCorrect": 9,
+    "exactQuotes": 12,
+    "total": 12,
+    "holdoutCorrect": 4,
+    "holdoutTotal": 6,
+    "medianSeconds": 2.58
+  },
+  "nativeActionRoundtrip": {
+    "passed": true,
+    "seconds": 15.81,
+    "sqlRevision": 3,
+    "toolCalls": 1
+  },
+  "limitation": "Synthetic smoke tests; classification/reasoning errors remain. Full browser chat unverified; human review mandatory.",
+  "v3QuestionFramingExperiment": {
+    "classificationCorrect": 13,
+    "total": 20,
+    "freshCorrect": 7,
+    "freshTotal": 8,
+    "validExactQuotes": 18,
+    "questionEndingCheckPassed": 0,
+    "parseFailures": 2,
+    "medianSeconds": 3.465,
+    "note": "Not a reliability improvement; retains prior failures and unverified interpretation boundary."
+  },
+  "latestNativeActionRoundtrip": {
+    "passed": true,
+    "seconds": 15.8,
+    "sqlRevision": 3,
+    "toolCalls": 1,
+    "scope": "Actual action and isolated SQL, not authenticated HTTP/browser chat"
+  }
+}

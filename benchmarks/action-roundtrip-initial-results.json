@@ -1,0 +1,129 @@
+{
+  "model": "untangle-qwen",
+  "framework": "@agent-native/core 0.226.0 resolveEngine",
+  "scope": "Isolated engine/action/SQL harness, not browser chat verification",
+  "seconds": 15.81,
+  "toolCalls": [
+    {
+      "name": "propose-findings",
+      "input": {
+        "id": "da8add3c-3663-45f4-80f2-b5fa796e11d8",
+        "expectedRevision": 2,
+        "findings": [
+          {
+            "title": "Conflict between Baseline and Instruction",
+            "kind": "conflict",
+            "explanation": "The project's baseline states that the launch should be in English only, while the instruction requests adding French for the launch. This creates a conflict between the agreed baseline and the incoming instruction.",
+            "evidence": [
+              {
+                "sourceId": "9a95bfc2-6645-4cd2-a737-35b7ec255c54",
+                "quote": "Launch in English only."
+              },
+              {
+                "sourceId": "01c536ce-7cfb-4183-84ca-ece07e2bd829",
+                "quote": "Add French for launch."
+              }
+            ]
+          }
+        ]
+      },
+      "output": {
+        "id": "da8add3c-3663-45f4-80f2-b5fa796e11d8",
+        "revision": 3
+      }
+    }
+  ],
+  "sqlRevision": 3,
+  "findings": [
+    {
+      "id": "0767934b-975e-4158-a4ff-05437c5a51b6",
+      "title": "Conflict between Baseline and Instruction",
+      "kind": "conflict",
+      "explanation": "The project's baseline states that the launch should be in English only, while the instruction requests adding French for the launch. This creates a conflict between the agreed baseline and the incoming instruction.",
+      "evidence": [
+        {
+          "sourceId": "9a95bfc2-6645-4cd2-a737-35b7ec255c54",
+          "quote": "Launch in English only."
+        },
+        {
+          "sourceId": "01c536ce-7cfb-4183-84ca-ece07e2bd829",
+          "quote": "Add French for launch."
+        }
+      ],
+      "proposedBy": "agent",
+      "reviews": []
+    }
+  ],
+  "events": [
+    {
+      "type": "tool-call",
+      "id": "8659162e-a7b1-489d-816f-2493120052c9",
+      "name": "propose-findings",
+      "input": {
+        "id": "da8add3c-3663-45f4-80f2-b5fa796e11d8",
+        "expectedRevision": 2,
+        "findings": [
+          {
+            "evidence": [
+              {
+                "quote": "Launch in English only.",
+                "sourceId": "9a95bfc2-6645-4cd2-a737-35b7ec255c54"
+              },
+              {
+                "quote": "Add French for launch.",
+                "sourceId": "01c536ce-7cfb-4183-84ca-ece07e2bd829"
+              }
+            ],
+            "explanation": "The project's baseline states that the launch should be in English only, while the instruction requests adding French for the launch. This creates a conflict between the agreed baseline and the incoming instruction.",
+            "kind": "conflict",
+            "title": "Conflict between Baseline and Instruction"
+          }
+        ]
+      }
+    },
+    {
+      "type": "usage",
+      "inputTokens": 884,
+      "outputTokens": 226,
+      "totalTokens": 1110,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    {
+      "type": "assistant-content",
+      "parts": [
+        {
+          "type": "tool-call",
+          "id": "8659162e-a7b1-489d-816f-2493120052c9",
+          "name": "propose-findings",
+          "input": {
+            "id": "da8add3c-3663-45f4-80f2-b5fa796e11d8",
+            "expectedRevision": 2,
+            "findings": [
+              {
+                "evidence": [
+                  {
+                    "quote": "Launch in English only.",
+                    "sourceId": "9a95bfc2-6645-4cd2-a737-35b7ec255c54"
+                  },
+                  {
+                    "quote": "Add French for launch.",
+                    "sourceId": "01c536ce-7cfb-4183-84ca-ece07e2bd829"
+                  }
+                ],
+                "explanation": "The project's baseline states that the launch should be in English only, while the instruction requests adding French for the launch. This creates a conflict between the agreed baseline and the incoming instruction.",
+                "kind": "conflict",
+                "title": "Conflict between Baseline and Instruction"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "stop",
+      "reason": "tool_use"
+    }
+  ],
+  "passed": true
+}

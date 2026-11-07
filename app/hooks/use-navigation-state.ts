@@ -18,6 +18,7 @@ export interface NavigationState {
   path?: string;
   publicPath?: string;
   threadId?: string;
+  projectId?: string;
 }
 
 export function useNavigationState() {
@@ -69,10 +70,14 @@ export function navigationStateForPath(pathname: string): NavigationState {
     path: pathname,
     publicPath: appPathFromLocalRoute(pathname),
     ...(threadId ? { threadId } : {}),
+    ...(pathname.startsWith("/projects/")
+      ? { projectId: pathname.split("/")[2] }
+      : {}),
   };
 }
 
 function viewForPath(pathname: string): string {
+  if (pathname.startsWith("/projects")) return "projects";
   if (isChatPathname(pathname)) return "chat";
   if (pathname === HOME_PATH) return "home";
   if (pathname.startsWith("/database")) return "database";
@@ -91,6 +96,14 @@ function pathForView(view?: string): string {
     case "chat":
     case "ask":
       return NEW_CHAT_PATH;
+    case "projects":
+      return "/projects";
+    case "about":
+      return "/about";
+    case "guide":
+      return "/guide";
+    case "privacy":
+      return "/privacy";
     case "home":
       return HOME_PATH;
     case "database":
@@ -111,6 +124,8 @@ function pathForView(view?: string): string {
 }
 
 export function pathForCommand(command: any): string {
+  if (command?.view === "projects" && typeof command?.projectId === "string")
+    return `/projects/${encodeURIComponent(command.projectId)}`;
   const path = pathForView(command?.view);
   if (command?.view !== "chat" && command?.view !== "ask") return path;
   const threadId =

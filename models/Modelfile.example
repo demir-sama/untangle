@@ -1,0 +1,4 @@
+# Replace this absolute path with the official, hash-verified GGUF file on your host.
+FROM /absolute/path/to/Qwen3-1.7B-Q8_0.gguf
+PARAMETER num_ctx 4096
+PARAMETER num_thread 4
