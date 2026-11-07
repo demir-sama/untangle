@@ -1,39 +1,48 @@
-# Hosted preview: verified free options and parent prerequisites
+# Hosted preview deployment
 
-## Existing account inspection (November 7, 2026)
+Public preview: https://untangle-ten.vercel.app . This is a non-commercial hackathon preview on existing free accounts, not a paid production service.
 
-Sanctioned Vercel connector confirms team **SAMA**, slug **sama-5806**, on **Hobby**. Team ID: team_avuzs1VRlYPQBAmCV6hCHFWP. It returned no existing projects and no installed integration configurations, both account-level and team-scoped. GitHub CLI is authenticated as demir-sama. No Vercel CLI login is installed/assumed; no connector credentials were extracted.
+## Infrastructure and data
 
-Hobby is a free, non-commercial/personal tier: 100GB transfer, 4 CPU-hours and 1M function invocations included; quota exhaustion pauses service rather than authorizing an upgrade. Source: https://vercel.com/docs/plans/hobby . This hackathon preview is not a paid/commercial production hosting promise.
+- Vercel team SAMA (sama-5806), verified Hobby plan. The user imported the existing demir-sama/untangle GitHub repository into a dedicated Untangle project. No other app was changed.
+- A dedicated Neon PostgreSQL 17 project/database on a verified Free organization, in aws-us-east-1. Fixed 0.25 CU; no temporary/claimable database. Do not create another database for this app.
+- Framework and Untangle production migrations passed, including an idempotent second run. The actual framework's pooled Neon adapter read the expected app tables successfully.
+- The hosted health endpoint reported ready/database true, the correct app/database identity, and no authentication-origin mismatch. Anonymous access to the private list-projects action returned 401. These are HTTP/server checks, not browser interaction proof.
 
-## Recommended persistent database: Neon Free
+Sources: https://vercel.com/docs/plans/hobby and https://neon.com/pricing . Free quotas can suspend service or block writes; no upgrade, card, paid add-on or overage purchase is authorized.
 
-Official permanent Free: no card, 100 CU-hours/project, 1GB/project storage (20GB account total), 5GB/project egress, idle scale-to-zero after five minutes. Limits suspend compute/block writes rather than automatically granting paid capacity. Source (updated November 4): https://neon.com/pricing . The user subsequently connected the Neon connector. It verified organization plan `free`; a new dedicated Untangle PostgreSQL 17 project was created in aws-us-east-1 with 0.25 CU min/max. No existing data was selected or modified.
+## Reproducible build
 
-**Parent step:** open Vercel team's Storage/Marketplace and inspect Neon provisioning, or sign in to an existing Neon account at https://console.neon.tech . Create/select a new **untangle** project on an explicitly $0 Free plan (no paid plan, card or paid add-on). If this needs signup/terms, parent/user must handle it. Keep the resulting DATABASE_URL in the app's secret configuration; do not paste it into chat or borrow another app's URL. We will run framework + app production migrations against that new database before deploying.
+Use Node **24.x**, pinned in package.json and .nvmrc. A broad engine range such as >=22.22.0 can override the Vercel project setting and select Node26; do not restore that range. Official explanation: https://vercel.com/docs/functions/runtimes/node-js/node-js-versions .
 
-Alternative, not yet provisioned: official Claimable Neon can create account-free PostgreSQL, capped at 100MB/1GB transfer and expiring after 72 hours. It persists between restarts but is not permanent, and claiming later rotates credentials. Source: https://neon.com/docs/reference/claimable-neon . Do not describe this as permanent storage or use it silently instead of the requested durable ownership. Parent can explicitly choose a temporary preview if desired.
+Vercel framework preset: Other (null). Root: repository root. Install: `pnpm install --frozen-lockfile`. Build:
 
-## Reachable inference: no free entitlement assumed
+```sh
+NITRO_PRESET=vercel AGENT_NATIVE_VERCEL_CRON_SCHEDULE='0 9 * * *' pnpm build
+```
 
-1. Native Builder connection is the simplest framework-supported route to a larger hosted model. Official https://www.builder.io/pricing lists Free at 60 credits/month, 15/day max. Account eligibility, remaining credits and selected model must be verified in the parent's normal signed-in UI. No signup/terms, provider connection or inference usage was performed. Connect through the deployed app's normal AI/settings flow after its authenticated preview is ready. Then rerun retained cases plus new holdouts before claiming improvement.
-2. Vercel AI Gateway has a free-model subset and monthly included credits, but requires a valid payment method for free credits. Remaining balance, verification and model entitlement are unknown; the connector exposes no balance tool. Do not assume this account is eligible or consume metered inference. Sources: https://vercel.com/docs/ai-gateway/pricing and https://vercel.com/docs/ai-gateway/getting-started . No card/top-up/auto-top-up is authorized.
-3. A direct provider's free account/key is possible only after its current model/quota and the parent's existing account are verified. No invented key, copied app secret, guessed quota or paid fallback is acceptable.
+Leave Output Directory unset. The official preset emits `.vercel/output` in Build Output API v3 format. Region is iad1. The generated cron is daily because Hobby rejects the default every-minute sweep. Untangle has no product feature requiring minute-level scheduled execution. Source: https://www.agent-native.com/docs/vercel/ .
 
-## Production auth and hosting
+## Production configuration: names only
 
-The framework already includes Better Auth. An email-delivery service is optional: without one, the official deployed flow uses email/password signup/login, skips verification, and does not send magic links. No email provider needs provisioning for this synthetic preview. Parent handles the first normal app account. Do not disable authentication. Source: https://www.agent-native.com/docs/deployment/ .
+Private variables: DATABASE_URL (pooled application connection), BETTER_AUTH_SECRET (stable session-signing secret), CRON_SECRET (authenticated framework sweep). All are production-only Sensitive secrets. Keep their values out of Git, archives and messages. A separate direct connection was used for migrations.
 
-Required host secrets: DATABASE_URL, one fresh stable BETTER_AUTH_SECRET, and CRON_SECRET for the generated authenticated daily sweep. Generate the latter for Untangle only; do not copy unrelated credentials. Optional public origin is inferred for Vercel previews. Parent must complete any external sign-in/terms step. No account or secret was created yet.
+Non-secret names: AGENT_NATIVE_APP_ID, APP_NAME, AGENT_MODE, BETTER_AUTH_URL, DO_NOT_TRACK, AGENT_NATIVE_TELEMETRY_DISABLED. The authentication origin is the canonical public preview URL. Preview/development environments have not been granted production credentials. No deployment-protection setting was weakened.
 
-Official Vercel preset: `NITRO_PRESET=vercel pnpm build`. Hobby cannot run the framework's default minute cron: set `AGENT_NATIVE_VERCEL_CRON_SCHEDULE=0 9 * * *` in build environment for a daily sweep. This app does not require scheduled work; the included framework sweep still needs its own CRON_SECRET so its requests authenticate. Source: https://www.agent-native.com/docs/vercel/ . No Pro upgrade is needed or authorized.
+## Normal app authentication and hosted AI
 
-Hosted configuration no longer selects localhost Ollama. It leaves inference to the framework's supported configured provider; local engine settings apply only in explicit development and never when VERCEL marks a hosted runtime. Tests cover this fail-closed distinction. Do not deploy a fake AI fallback if no provider is connected.
+The app retains framework Better Auth. Use normal account signup/login on the hosted app, not Continue as local dev. There is no email-delivery provider, so do not expect magic links or verified-email identity. The operator/user handles account creation and private form fields. No account/session has been created, forged or borrowed by this implementation stream. Official behavior: https://www.agent-native.com/docs/deployment/ .
 
-## Current checkpoint
+After app login, the native assistant's **Use Builder.io** setup control opens its shared chooser. Select **I have a Builder.io account** for an existing account. Do not invent a direct connect URL or choose **Create and activate** without a separate account decision. These labels/flow are confirmed in the installed Agent-Native framework/toolkit source.
 
-A dedicated database has now been created through the newly connected Neon account on its verified Free plan. Production deployment is being prepared; no signup, paid resource, provider model key or inference credit has been created/consumed. A running hosted URL cannot honestly be returned until a free durable database and reachable inference entitlement are settled. The existing local server remains available to Shell, not the bot browser. Browser/mobile/Clips QA remains pending a normal hosted deployment and sign-in.
+Builder's published Free plan is 60 credits/month with 15/day maximum: https://www.builder.io/pricing . Actual account eligibility, remaining balance, available models and hosted inference reliability are unverified. No paid fallback, top-up, account signup or provider key is assumed. Prompts/source context may reach the selected provider once configured; review its terms. Production never calls the development Ollama service.
 
-## Verified build checkpoint
+## Remaining verification
 
-The Vercel-preset production build passed with the daily cron expression. Generated `.vercel/output/config.json` is Build Output API version 3 and contains exactly the authenticated sweep path with schedule `0 9 * * *`. This is a local build artifact, not a Vercel deployment. Typecheck and framework doctor are clean; 32 tests pass, including hosted inference exclusion. Production database migrations passed against the dedicated PostgreSQL database, including a second idempotent run with AGENT_NATIVE_APP_ID=untangle. Framework schema plus the Untangle app migration were applied. Deployed authentication is not yet verified.
+- Parent desktop/mobile authenticated browser QA and native multi-turn chat after a verified free provider connection.
+- Comparative retained/fresh model cases before claiming a stronger model.
+- Cross-instance realtime behavior: server health reports local realtime transport, not a verified managed realtime service.
+- Retention/recovery controls and operator administration are not a production guarantee.
+- Runtime-log access returned 403; no alternate access workaround was attempted. Build-log reads returned 404. Do not claim a clean runtime error scan.
+
+The earlier create-project connector denial was resolved by the user importing the app normally; updating that exact existing project's environment/build settings and deploying succeeded. No duplicate project or paid resource was created.

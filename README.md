@@ -22,7 +22,7 @@ The free local model is real but limited. Initial smoke test: 3/6 classification
 
 ## Local setup
 
-Use Node 22.22+ (this installation was tested on 24.22.1), Corepack and the repository-pinned pnpm 10.29.1.
+Use the pinned Node 24.x (this installation was tested on 24.22.1), Corepack and the repository-pinned pnpm 10.29.1.
 
 ```sh
 corepack enable
@@ -34,11 +34,11 @@ Normal native dependency installation may need a C/C++ toolchain and make. This 
 
 The current development service uses port 8092. The framework uses a canonical origin for cookies: do not interchange localhost and its private IP. On the sign-in screen select **Continue as local dev** through the normal framework flow; it creates a real Better Auth development session, not an auth bypass. No provider key is needed for local inference. Do not disable authentication to get a demo working.
 
-**Bot-browser preview is currently blocked by an intentional platform loopback/private-network restriction.** Shell HTTP 200 is not rendered-browser verification. See [preview access and auth prerequisites](docs/PREVIEW-ACCESS.md). Do not modify browser/network security controls or expose a development identity to obtain screenshots.
+**Local bot-browser preview is blocked by an intentional loopback/private-network restriction.** The normal hosted preview is available at https://untangle-ten.vercel.app; HTTP 200 is not rendered-browser verification. See [preview access and auth prerequisites](docs/PREVIEW-ACCESS.md). Do not modify browser/network security controls or expose a development identity to obtain screenshots.
 
 ## Free local model
 
-The app plugin currently selects supported `ai-sdk:ollama` at `http://127.0.0.1:11439`, model `untangle-qwen`. Run Ollama on the app host, not in the visitor's browser:
+Only explicit non-hosted development selects supported `ai-sdk:ollama` at `http://127.0.0.1:11439`, model `untangle-qwen`. Run Ollama on the app host, not in the visitor's browser:
 
 ```sh
 OLLAMA_HOST=127.0.0.1:11439 ollama serve
@@ -78,10 +78,10 @@ Tests use actual in-memory PGlite/Drizzle, not a fake persistence adapter. Build
 
 ## What is not finished or promised
 
-No public hosting, complete browser/mobile/assistive-technology QA, reliable autonomous decisions, verified stakeholder authority, team sharing, self-service data deletion, contract interpretation, external sending or compliance claims. Full native browser-chat context/multi-turn behavior is still unverified behind the preview/auth boundary. The compact native engine/action/SQL integration smoke test passed; that is a narrower claim.
+Public preview: https://untangle-ten.vercel.app, served by Vercel Hobby with persistent Neon Free PostgreSQL. HTTP health reports ready/database true and anonymous private action requests return 401. No complete browser/mobile/assistive-technology QA, reliable autonomous decisions, verified stakeholder authority, team sharing, self-service data deletion, contract interpretation, external sending or compliance claims. Full native browser-chat context/multi-turn behavior is still unverified behind the preview/auth boundary. The compact native engine/action/SQL integration smoke test passed; that is a narrower claim.
 
-A public deployment needs real authentication, durable PostgreSQL/storage, privacy/retention controls and a reachable model provider/runtime. Vercel cannot simply call this box's localhost Ollama, and serverless local files cannot be assumed durable. No deployment or inference spending has been authorized.
+The hosted preview uses normal Better Auth account sessions and a dedicated persistent SQL database; it never calls the development Ollama endpoint. A reachable AI provider must still be connected through the native setup flow and its actual free entitlement verified. No spending, paid fallback or provider account creation is authorized. See [hosted deployment details](docs/HOSTED-PREVIEW-PLAN.md).
 
 ## Credits and licenses
 
-Built with the actual [Agent-Native framework](https://www.agent-native.com/docs/), React Router, React, Drizzle and PGlite. Dependency licenses remain their respective owners'. Qwen model weights are separately licensed Apache-2.0 and are not included. Original Untangle logo/assets are in `public/brand/`. This README does not imply Builder.io endorsement or a license grant over unrelated framework/dependency assets.
+Built with the actual [Agent-Native framework](https://www.agent-native.com/docs/), React Router, React, Drizzle and PostgreSQL (PGlite for local development). Dependency licenses remain their respective owners'. Qwen model weights are separately licensed Apache-2.0 and are not included. Original Untangle logo/assets are in `public/brand/`. This README does not imply Builder.io endorsement or a license grant over unrelated framework/dependency assets.

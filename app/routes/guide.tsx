@@ -104,9 +104,11 @@ export default function Guide() {
             evidence.
           </li>
           <li>
-            <strong>Assistant unavailable:</strong> check that the local model
-            service is running. Manual evidence review, decisions and exports do
-            not depend on AI.
+            <strong>Assistant unavailable:</strong> on the hosted preview,
+            configure a supported provider connection and verify its available
+            usage allowance. Only local development uses the local model
+            service. Manual evidence review, decisions and exports do not depend
+            on AI.
           </li>
           <li>
             <strong>Wrong AI interpretation:</strong> do not accept it. Correct
@@ -120,7 +122,7 @@ export default function Guide() {
         <p>
           Read the{" "}
           <Link to="/privacy">privacy, retention and model limitations</Link>.
-          This is a private, single-reviewer local prototype, not a production
+          This is a private, single-reviewer hackathon preview, not a production
           multi-user approval system.
         </p>
       </section>

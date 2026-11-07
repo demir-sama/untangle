@@ -32,3 +32,9 @@ No confidence scores are invented. Small-model mistakes are openly reported in [
 ## Privacy and retention
 
 Use synthetic/non-sensitive data in this prototype. Source text, decisions, immutable snapshots, exports and framework chat can remain on disk. No per-project permanent deletion interface is implemented. Read [SECURITY](SECURITY.md) before real client material.
+
+## Hosted preview access
+
+Open https://untangle-ten.vercel.app and use normal account signup/login. The local-development sign-in option is only for a separate localhost installation. No email-delivery provider is configured; magic links and verified email identity are not promised.
+
+For hosted AI, use the native **Use Builder.io** setup control, then **I have a Builder.io account**. Verify actual Free balance/eligibility before inference; no account creation, paid credits or automatic paid fallback is assumed. A configured provider may receive prompts/source context. Manual review and exports are available independently of AI.

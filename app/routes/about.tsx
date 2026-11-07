@@ -64,10 +64,10 @@ export default function About() {
       <section className="untangle-notice">
         <h2>Useful does not mean infallible</h2>
         <p>
-          The free local model is small. In a revised 12-case synthetic smoke
-          test, it classified 9 correctly; on the six new holdouts, only 4. It
-          also produced an unsupported explanation while copying valid
-          quotations. Source matching verifies the quote, not the
+          Earlier local Qwen model tests were limited. In a revised 12-case
+          synthetic smoke test, it classified 9 correctly; on the six new
+          holdouts, only 4. It also produced an unsupported explanation while
+          copying valid quotations. Source matching verifies the quote, not the
           interpretation. All model suggestions need human review. We do not
           show fabricated confidence scores or claim production accuracy.
         </p>

@@ -23,9 +23,9 @@ About, Guide and Privacy are intentionally public informational pages; no projec
 
 ## Stored data / retention
 
-Local SQL stores source wording/labels, findings, review history, identity actor labels and revision/export text. Framework chat history/tool results can also persist source content. This prototype does not promise encryption at rest, backups, reliable deletion, compliance certification or audit-log tamper resistance against a database administrator. Immutable domain snapshots are not a cryptographically signed legal audit trail.
+SQL stores source wording/labels, findings, review history, identity actor labels and revision/export text. Framework chat history/tool results can also persist source content. This prototype does not promise encryption at rest, backups, reliable deletion, compliance certification or audit-log tamper resistance against a database administrator. Immutable domain snapshots are not a cryptographically signed legal audit trail.
 
-There is no self-service permanent project deletion in this release. The local operator controls retention of the database directory. Do not put secrets, regulated personal information or confidential client material in the evaluation instance. Current server CLI telemetry is disabled; review framework/client logging and provider terms for any actual deployment.
+There is no self-service permanent project deletion in this release. The deployment operator controls retention and administrative access. Hosted records are in a dedicated Neon PostgreSQL database served through Vercel; separate local development can use a PGlite data directory. Do not put secrets, regulated personal information or confidential client material in the evaluation instance. Preview framework telemetry is disabled; Vercel, Neon and a configured AI provider can retain service logs. Review framework/client logging and provider terms for any actual deployment.
 
 ## Model and authority limits
 
@@ -33,4 +33,4 @@ No production accuracy claim, fabricated confidence, verified stakeholder identi
 
 ## Known blockers
 
-Bot-browser loopback/private-network preview is intentionally restricted by the platform. No bypass is attempted. Normal authenticated browser QA awaits a supported hosting/local-execution path. Production hosting/model connectivity and data retention are not settled. Optional native terminal PTY installation failed due missing build prerequisites; web features do not depend on it.
+Bot-browser loopback/private-network preview is intentionally restricted by the platform. No bypass is attempted. Authenticated browser QA can now use https://untangle-ten.vercel.app. A normal Vercel/Neon hosted preview is now available. Hosted model connectivity, authenticated UI validation and retention guarantees remain unsettled. Optional native terminal PTY installation failed due missing build prerequisites; web features do not depend on it.

@@ -6,6 +6,7 @@ import { safeNavigationPath } from "../actions/navigate";
 import { Brand, BrandMark } from "../app/components/untangle/Brand";
 import { DecisionCard } from "../app/components/untangle/DecisionCard";
 import { ExportRecords } from "../app/components/untangle/ExportRecords";
+import Privacy from "../app/routes/privacy";
 import type { Finding, Source } from "../shared/untangle";
 const source: Source = {
   id: crypto.randomUUID(),
@@ -115,5 +116,23 @@ describe("product presentation contracts (not visual/browser QA)", () => {
       "/chat/new",
     ])
       expect(safeNavigationPath(path)).toBe(true);
+  });
+});
+
+describe("hosted privacy contract", () => {
+  it("distinguishes server storage and configured-provider transmission from local development", () => {
+    const html = renderToStaticMarkup(
+      <MemoryRouter>
+        <Privacy />
+      </MemoryRouter>,
+    );
+    expect(html).toContain("Neon PostgreSQL");
+    expect(html).toContain("Vercel");
+    expect(html).toContain("selected");
+    expect(html).toContain("provider");
+    expect(html).not.toContain(
+      "This installation is configured to use a local Ollama service",
+    );
+    expect(html).toContain("Manual review and exports");
   });
 });

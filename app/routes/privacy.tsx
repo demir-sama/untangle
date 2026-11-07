@@ -7,7 +7,7 @@ export default function Privacy() {
     <InfoPage
       eyebrow="Privacy & limitations"
       title="Know what the record can — and cannot — say."
-      intro="Use synthetic or non-sensitive material while evaluating this local prototype. Do not paste passwords, API keys, personal records, regulated information or confidential client documents."
+      intro="Use synthetic or non-sensitive material while evaluating this preview. Do not paste passwords, API keys, personal records, regulated information or confidential client documents."
     >
       <section>
         <h2>What is stored</h2>
@@ -20,21 +20,23 @@ export default function Privacy() {
           may also contain prompts, source text and tool results.
         </p>
         <p>
-          The current local installation uses PGlite under{" "}
-          <code>data/pglite</code>. It does not promise encrypted storage,
-          backups or recovery. There is no self-service permanent project
-          deletion in this release. A local operator controls the data
-          directory; ask them about retention before using real material.
+          The hosted preview runs on Vercel and stores records in a dedicated
+          Neon PostgreSQL database, not in the browser or temporary function
+          files. A separate local installation can use PGlite under{" "}
+          <code>data/pglite</code>. There is no self-service permanent project
+          deletion in this release. The deployment operator controls retention
+          and access to stored records; ask about retention and recovery before
+          using real material.
         </p>
       </section>
       <section>
         <h2>Who can access it</h2>
         <p>
           Domain actions scope projects to the authenticated reviewer and
-          organization context. This is not a shared-team approval system. Local
-          development uses the framework’s development identity, not a
-          production sign-in boundary: do not expose the development server to
-          untrusted people or networks.
+          organization context. This is not a shared-team approval system. The
+          hosted preview requires a normal account session. A separate local
+          development installation has a local-only sign-in option; do not
+          expose that development server to untrusted people or networks.
         </p>
         <p>
           Source authors and decision owners are labels supplied by the
@@ -46,26 +48,28 @@ export default function Privacy() {
       <section>
         <h2>Where inference runs</h2>
         <p>
-          This installation is configured to use a local Ollama service and the
-          official Qwen3-1.7B model. The configured model calls remain on the
-          app host; there is no model key or paid provider in that route. The
-          browser talks to the app server, not directly to Ollama.
+          Hosted AI requires a configured Builder.io or other supported provider
+          connection. When you use that connection, prompts, source passages,
+          chat context and tool results may be transmitted to the selected
+          provider under its terms. Review the provider and its retention policy
+          before submitting material. No hosted model accuracy or free-credit
+          entitlement is assumed.
         </p>
         <p>
-          If an operator changes to a hosted provider, prompts and tool context
-          can leave the machine under that provider’s terms. Review that change
-          before adding real data. A hosted web app cannot automatically reach
-          the local model on this machine.
+          Only an explicit, non-hosted development installation can select the
+          local Ollama/Qwen model used in the earlier smoke tests. The hosted
+          preview does not call that local service. Manual review and exports do
+          not require an AI provider connection.
         </p>
       </section>
       <section>
         <h2>Telemetry and external actions</h2>
         <p>
-          The development server was launched with framework telemetry disabled.
-          No advertising analytics or third-party tracking service was added to
-          Untangle. Framework configuration, request logs and durable chat
-          history still need a deployment-specific review; this is not a promise
-          of zero logging.
+          Framework telemetry is disabled in the preview configuration. No
+          advertising analytics or third-party tracking service was added to
+          Untangle. Vercel, Neon and a selected AI provider may retain service
+          or diagnostic logs under their policies. Framework chat history can
+          retain submitted context. This is not a promise of zero logging.
         </p>
         <p>
           Untangle does not send email or client messages, retrieve inboxes,
@@ -134,11 +138,12 @@ export default function Privacy() {
       <section>
         <h2>Deployment readiness</h2>
         <p>
-          The development configuration is not a production hosting recipe.
-          Public operation needs real authentication, a durable database,
-          appropriate privacy/retention controls and a reachable model runtime.
-          No cloud hosting, compliance certification, uptime, legal review or
-          deployment completion is claimed.
+          This is a hosted hackathon preview, not a production service with an
+          uptime or recovery guarantee. Its SQL health and anonymous action
+          boundary have been checked, but complete authenticated desktop/mobile
+          flows and hosted model reliability still require validation. No
+          independent security audit, compliance certification or legal review
+          is claimed.
         </p>
       </section>
     </InfoPage>
